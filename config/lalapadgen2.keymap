@@ -57,6 +57,16 @@
             bindings = <&kp TAB>;
             key-positions = <10 11>;
         };
+
+        Onishi {
+            bindings = <&to 4>;
+            key-positions = <39 40>;
+        };
+
+        defaultkey {
+            bindings = <&to 0>;
+            key-positions = <7 8>;
+        };
     };
 
     keymap {
@@ -111,6 +121,18 @@
          &trans   &trans   &trans   &trans   &trans  &trans  &trans                         &trans                         &trans                         &trans
 &trans   &trans   &trans                                                                                                   &trans                         &trans                         &trans
 &trans   &trans   &trans   &trans   &trans                   &trans                         &trans                         &trans                         &trans                         &trans
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+&kp Q      &kp L     &kp U     &kp COMMA  &kp DOT                         &kp F      &kp W   &kp R   &kp Y   &kp P
+&kp E      &kp I     &kp A     &kp O      &kp MINUS                       &kp K      &kp T   &kp N   &kp S   &kp H
+&kp Z      &kp X     &kp C     &kp V      &kp SEMI                        &kp G      &kp D   &kp M   &kp J   &kp B
+&kp LCTRL  &kp LGUI  &kp LALT  &trans     &kp SPACE  &kp LSHFT  &kp BSPC  &kp ENTER  &trans  &trans  &trans  &trans
+           &trans    &trans    &trans     &trans     &trans     &trans    &trans     &trans  &trans  &trans
+&trans     &trans    &trans                                                                  &trans  &trans  &trans
+&trans     &trans    &trans    &trans     &trans                          &trans     &trans  &trans  &trans  &trans
             >;
         };
     };
