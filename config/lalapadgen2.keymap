@@ -41,7 +41,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "td_mo12";
             #binding-cells = <0>;
-            bindings = <&mo 1>, <&mo 2>;
+            bindings = <&mo 2>, <&mo 3>;
         };
     };
 
@@ -59,13 +59,53 @@
         };
 
         Onishi {
-            bindings = <&to 4>;
+            bindings = <&to 1>;
             key-positions = <39 40>;
         };
 
         defaultkey {
             bindings = <&to 0>;
             key-positions = <7 8>;
+        };
+
+        toArchive {
+            bindings = <&toArchive>;
+            key-positions = <20 30>;
+        };
+
+        login {
+            bindings = <&login>;
+            key-positions = <30 32>;
+        };
+    };
+
+    macros {
+        toArchive: toArchive {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(NUMBER_1))>;
+            label = "TOARCHIVE";
+        };
+
+        login: login {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LA(DELETE))>;
+            label = "LOGIN";
+        };
+
+        pass1: pass1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp LS(U) &kp S &kp E &kp R &kp M &kp M &kp W &kp T &kp N9 &kp N2 &kp LS(U) &kp S &kp E &kp R &kp M &kp W &kp T &kp N9 &kp N2>;
+            label = "PASS1";
+        };
+
+        pass2: pass2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp LS(P) &kp O &kp W &kp E &kp R &kp M &kp W &kp T &kp N9 &kp N2 &kp LS(P) &kp O &kp W &kp E &kp R &kp M &kp W &kp T &kp N9 &kp N2>;
+            label = "PASS2";
         };
     };
 
@@ -78,10 +118,22 @@
 &kp Q              &kp W      &kp E         &kp R      &kp T                                     &kp Y      &kp U     &kp I           &kp O           &kp P
 &kp A              &kp S      &kp D         &kp F      &kp G                                     &kp H      &kp J     &kp K           &kp L           &mt2 EQUAL MINUS
 &mt2 LEFT_SHIFT Z  &kp X      &kp C         &kp V      &kp B                                     &kp N      &kp M     &kp COMMA       &kp PERIOD      &kp SLASH
-&kp LCTRL          &kp LWIN   &kp LEFT_ALT  &mo 1      &kp SPACE  &kp LEFT_SHIFT  &kp BACKSPACE  &kp ENTER  &mo 2     &kp LANGUAGE_2  &kp LANGUAGE_1  &kp BACKSLASH
+&kp LCTRL          &kp LWIN   &kp LEFT_ALT  &mo 2      &kp SPACE  &kp LEFT_SHIFT  &kp BACKSPACE  &kp ENTER  &mo 3     &kp LANGUAGE_2  &kp LANGUAGE_1  &kp BACKSLASH
                    &none      &kp RIGHT     &kp DOWN   &kp LEFT   &kp UP          &kp UP         &kp LEFT   &kp DOWN  &kp RIGHT       &none
 &mkp LCLK          &mkp RCLK  &mkp MCLK                                                                               &mkp LCLK       &mkp RCLK       &mkp MCLK
 &mkp MB4           &mkp MB5   &kp LG(TAB)   &kp LG(D)  &kp LCTRL                                 &mkp MB4   &mkp MB5  &kp LG(TAB)     &kp LG(D)       &kp LCTRL
+            >;
+        };
+
+        Ohnishi_layer_4 {
+            bindings = <
+&kp Q   &kp L   &kp U   &kp COMMA  &kp DOT                         &kp F      &kp W   &kp R   &kp Y   &kp P
+&kp E   &kp I   &kp A   &kp O      &kp MINUS                       &kp K      &kp T   &kp N   &kp S   &kp H
+&kp Z   &kp X   &kp C   &kp V      &kp SEMI                        &kp G      &kp D   &kp M   &kp J   &kp B
+&trans  &trans  &trans  &mo 2      &kp SPACE  &kp LSHFT  &kp BSPC  &kp ENTER  &mo 3   &trans  &trans  &trans
+        &trans  &trans  &trans     &trans     &trans     &trans    &trans     &trans  &trans  &trans
+&trans  &trans  &trans                                                                &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans                          &trans     &trans  &trans  &trans  &trans
             >;
         };
 
@@ -123,26 +175,14 @@
 &trans   &trans   &trans   &trans   &trans                   &trans                         &trans                         &trans                         &trans                         &trans
             >;
         };
-
-        layer_4 {
-            bindings = <
-&kp Q      &kp L     &kp U     &kp COMMA  &kp DOT                         &kp F      &kp W   &kp R   &kp Y   &kp P
-&kp E      &kp I     &kp A     &kp O      &kp MINUS                       &kp K      &kp T   &kp N   &kp S   &kp H
-&kp Z      &kp X     &kp C     &kp V      &kp SEMI                        &kp G      &kp D   &kp M   &kp J   &kp B
-&kp LCTRL  &kp LGUI  &kp LALT  &trans     &kp SPACE  &kp LSHFT  &kp BSPC  &kp ENTER  &trans  &trans  &trans  &trans
-           &trans    &trans    &trans     &trans     &trans     &trans    &trans     &trans  &trans  &trans
-&trans     &trans    &trans                                                                  &trans  &trans  &trans
-&trans     &trans    &trans    &trans     &trans                          &trans     &trans  &trans  &trans  &trans
-            >;
-        };
     };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
         Cond_Syslayer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+            if-layers = <2 3>;
+            then-layer = <4>;
         };
     };
 };
